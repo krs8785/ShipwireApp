@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 public class OrderExecutor extends Thread {
 
+	  private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
   ExecutorService executorService = Executors.newFixedThreadPool(10);
 
   public OrderExecutor() {
@@ -22,6 +24,7 @@ public class OrderExecutor extends Thread {
         if (!OrderGenerator.orderList.isEmpty()) {
           executorService.execute(new InventoryAllocator(OrderGenerator.orderList.remove()));
         }
+        Thread.sleep(100);
       } catch (Exception ex) {
         ex.printStackTrace();
       }

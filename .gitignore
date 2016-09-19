@@ -20,6 +20,7 @@ local.properties
 .settings/
 .loadpath
 .checkstyle
+logs/
 
 # External tool builders
 .externalToolBuilders/
