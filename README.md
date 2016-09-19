@@ -59,23 +59,29 @@ The order example used is
 <b>Output Example  :</b>
 
 The format of the output is 
+<pre>
+HEADER: STREAM_ID
+PRODUCTNAME QUANTITY QUANTITYALLOCATED QUANTITYBACKORDER
+</pre>
+
+Output of the above input 
 
 <pre>Header: 1
-ProductName: A Quantity: 1 QuantityFilled: 1 QuantityBackorder: 0
-ProductName: C Quantity: 1 QuantityFilled: 1 QuantityBackorder: 0
+ProductName: A Quantity: 1 QuantityAllocated: 1 QuantityBackorder: 0
+ProductName: C Quantity: 1 QuantityAllocated: 1 QuantityBackorder: 0
 
 Header: 2
-ProductName: E Quantity: 5 QuantityFilled: 0 QuantityBackorder: 5
+ProductName: E Quantity: 5 QuantityAllocated: 0 QuantityBackorder: 5
 
 Header: 3
-ProductName: D Quantity: 4 QuantityFilled: 0 QuantityBackorder: 4
+ProductName: D Quantity: 4 QuantityAllocated: 0 QuantityBackorder: 4
 
 Header: 4
-ProductName: A Quantity: 1 QuantityFilled: 1 QuantityBackorder: 0
-ProductName: C Quantity: 1 QuantityFilled: 0 QuantityBackorder: 1
+ProductName: A Quantity: 1 QuantityAllocated: 1 QuantityBackorder: 0
+ProductName: C Quantity: 1 QuantityAllocated: 0 QuantityBackorder: 1
 
 Header: 5
-ProductName: B Quantity: 3 QuantityFilled: 3 QuantityBackorder: 0</pre>
+ProductName: B Quantity: 3 QuantityAllocated: 3 QuantityBackorder: 0</pre>
 
 
 <b>TODO :</b>

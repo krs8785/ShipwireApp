@@ -100,7 +100,7 @@ public class InventoryAllocator implements Runnable {
 
         LineObject lineObjectTemp = lineObjects.get(j);
         orderInfo.append("ProductName: " + lineObjectTemp.getProductName()
-                 + " Quantity: " + lineObjectTemp.getQuantity() + " QuantityFilled: "
+                 + " Quantity: " + lineObjectTemp.getQuantity() + " QuantityAllocated: "
                  + lineObjectTemp.getQuantityFilled() 
                  + " QuantityBackorder: " + lineObjectTemp.getQuantityBackordered() + "\n");
       }
