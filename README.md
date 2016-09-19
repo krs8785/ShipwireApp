@@ -2,9 +2,17 @@
 
 <b>Description :</b>
 
-A REST oriented application that maintains an inventory and accepts a stream of order which are processed asynchronously. The application is capable of creating, updating the inventory dynamically at any given time. At the same time it can also continously accept orders from multiple streams. 
+A REST oriented application that accepts a stream of order which are processed asynchronously and allocates products from the inventory to it. The application is capable of creating, updating the inventory dynamically at any given time. At the same time it can also continously accept orders from multiple streams. 
 
-<b>Requirement :</b>
+<b>Assumptions</b>
+
+1. In a real world scenario the inventory is dynamic meaning that the products can come in and go out at any time depending on orders. Hence initially the inventory is empty to start with. Now you can push X products with Y quantity into the inventory similar to a real wareshouse where the merchant can send in his product based on order demand.
+
+2. The REST endpoint to populate an inventory accepts a Txt file (instead of Json typically) which consists of the Products and Quantity respectively each on new line. I designed the API in this fashion because I wanted to put all the products in quickly. 
+
+3. Order can come in at any time, so I have a REST endpoint that can accept an order stream(again a Txt file).  Only the valid orders are processed depending on availibility. As per the code challenge the system should halt and print results. I have kept it this way for now.
+
+<b>Requirements :</b>
 
 1. Your favourite IDE
 2. MAVEN
@@ -24,7 +32,31 @@ A REST oriented application that maintains an inventory and accepts a stream of 
    
     ```curl -X POST localhost:8080/createOrder -F "file=@orderStream.txt"```
 
-<b>Reading the output :</b>
+
+<b>Input Example :</b>
+
+The inventory example I used is
+
+<pre>
+A 2
+B 3
+C 1
+D 0
+E 0
+</pre>
+
+The order example used is 
+
+<pre>
+{"Header": 1, "Lines": {"Product": "A", "Quantity": "1"}{"Product": "C", "Quantity": "1"}} 
+{"Header": 2, "Lines": {"Product": "E", "Quantity": "5"}} 
+{"Header": 3, "Lines": {"Product": "D", "Quantity": "4"}} 
+{"Header": 4, "Lines": {"Product": "A", "Quantity": "1"}{"Product": "C", "Quantity": "1"}} 
+{"Header": 5, "Lines": {"Product": "B", "Quantity": "3"}} 
+{"Header": 6, "Lines": {"Product": "D", "Quantity": "4"}} 
+</pre>
+
+<b>Output Example  :</b>
 
 The format of the output is 
 
@@ -44,6 +76,12 @@ ProductName: C Quantity: 1 QuantityFilled: 0 QuantityBackorder: 1
 
 Header: 5
 ProductName: B Quantity: 3 QuantityFilled: 3 QuantityBackorder: 0</pre>
+
+
+<b>TODO :</b>
+
+
+
 
 
   
