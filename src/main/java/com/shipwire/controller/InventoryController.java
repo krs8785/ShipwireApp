@@ -23,7 +23,7 @@ public class InventoryController {
   private InventoryServiceImpl inventoryService;
 
   /**
-   * REST API for creating inventory.
+   * REST API for populating inventory with product and quantity. 
    * 
    * @param file file
    * @return Response

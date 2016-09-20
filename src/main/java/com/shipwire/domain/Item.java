@@ -1,5 +1,10 @@
 package com.shipwire.domain;
 
+/**
+ * The Item class is a model for product/quantity.
+ *  
+ * @author karan
+ */
 public class Item {
 
   private String productName;

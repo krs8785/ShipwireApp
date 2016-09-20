@@ -2,6 +2,12 @@ package com.shipwire.domain;
 
 import com.shipwire.constants.Constants;
 
+/**
+ * The LineObject class inherits from the Item. It represents the 
+ * orders and its properties respectively.
+ * 
+ * @author karan
+ */
 public class LineObject extends Item {
 
   private String status = Constants.VALID_ORDER;

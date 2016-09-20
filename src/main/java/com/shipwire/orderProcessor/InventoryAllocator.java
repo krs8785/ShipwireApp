@@ -10,6 +10,12 @@ import com.shipwire.domain.LineObject;
 import com.shipwire.domain.Order;
 import com.shipwire.services.impl.InventoryServiceImpl;
 
+/**
+ * The inventory allocator accepts orders and allocates inventory to 
+ * it. It keeps track of the processed order.
+ * 
+ * @author karan
+ */
 public class InventoryAllocator implements Runnable {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -23,8 +29,8 @@ public class InventoryAllocator implements Runnable {
     inventoryService = new InventoryServiceImpl();
   }
 
-  /** Each order thread is processed if inventory is available.
-   * 
+  /** 
+   * Each order thread is processed if inventory is available.
    */
   public void run() {
     try {
@@ -38,7 +44,8 @@ public class InventoryAllocator implements Runnable {
     }
   }
 
-  /** Allocate inventory to order and update order.
+  /** 
+   * Allocate inventory to order and update order.
    * 
    * @param order Order 
    */
@@ -51,6 +58,8 @@ public class InventoryAllocator implements Runnable {
       LineObject currentLineObject = lineObjects.get(i);
       if (currentLineObject.getStatus().equals(Constants.INVALID_ORDER)) {
         //invalid order whose quantity is <1 or >5
+        order.getLine().get(i).setQuantityFilled(0);
+        order.getLine().get(i).setQuantityBackordered(currentLineObject.getQuantity());
       } else if (currentLineObject.getStatus().equals(Constants.VALID_ORDER)) {
     
         if (inventoryService.isProductAvailable(currentLineObject.getProductName())) {

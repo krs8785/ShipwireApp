@@ -5,6 +5,12 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The Inventory is a singleton class which is essentially a representation of 
+ * the database. It consists of a key/value map which stores the product/quantity.
+ * 
+ * @author karan
+ */
 public class Inventory {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());

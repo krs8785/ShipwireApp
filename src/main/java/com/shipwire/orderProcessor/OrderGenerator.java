@@ -20,7 +20,6 @@ import com.shipwire.domain.Order;
 
 public class OrderGenerator {
 
-
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   public static LinkedList<Order> orderList = new LinkedList<Order>();

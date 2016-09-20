@@ -6,9 +6,13 @@ import java.util.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The orderExecutor thread runs parallel and keep processing
+ * orders as soon as they are in the order Queue. 
+ *  
+ * @author karan
+ */
 public class OrderExecutor extends Thread {
-
-	  private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   ExecutorService executorService = Executors.newFixedThreadPool(10);
 
