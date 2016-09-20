@@ -45,7 +45,8 @@ public class InventoryAllocator implements Runnable {
   }
 
   /** 
-   * Allocate inventory to order and update order.
+   * Allocate inventory to order and update order. Check if right product and
+   * right quantity are available.
    * 
    * @param order Order 
    */
@@ -56,8 +57,9 @@ public class InventoryAllocator implements Runnable {
     for (int i = 0; i < lineObjects.size(); i++) {
     
       LineObject currentLineObject = lineObjects.get(i);
-      if (currentLineObject.getStatus().equals(Constants.INVALID_ORDER)) {
-        //invalid order whose quantity is <1 or >5
+      //invalid order whose quantity is <1 or >5
+      if (currentLineObject.getStatus().equals(Constants.INVALID_ORDER)) {   
+    
         order.getLine().get(i).setQuantityFilled(0);
         order.getLine().get(i).setQuantityBackordered(currentLineObject.getQuantity());
       } else if (currentLineObject.getStatus().equals(Constants.VALID_ORDER)) {
@@ -67,17 +69,22 @@ public class InventoryAllocator implements Runnable {
           int quantityInInventory = inventoryService.getProductQuantity(currentLineObject
                                     .getProductName());
           int difference = Math.abs(quantityInInventory - currentLineObject.getQuantity());
+          
+          //Based on the availability allocate the product
           if (quantityInInventory > currentLineObject.getQuantity()) {
+        
             //Inventory available in surplus
             order.getLine().get(i).setQuantityFilled(currentLineObject.getQuantity());
             order.getLine().get(i).setQuantityBackordered(0);
             inventoryService.decrementInventory(currentLineObject.getProductName(), difference);
           } else if (difference == 0) {
+        
             //Inventory available exact
             order.getLine().get(i).setQuantityFilled(currentLineObject.getQuantity());
             order.getLine().get(i).setQuantityBackordered(0);
             inventoryService.decrementInventory(currentLineObject.getProductName(), 0);
           } else {
+        
             //Inventory is scarce
             order.getLine().get(i).setQuantityFilled(inventoryService
                  .getProductQuantity(currentLineObject.getProductName()));
@@ -85,6 +92,7 @@ public class InventoryAllocator implements Runnable {
             inventoryService.decrementInventory(currentLineObject.getProductName(), 0);
           }
         } else {
+        
           //Order should go to backOrder if product is not in inventory
           order.getLine().get(i).setQuantityFilled(0);
           order.getLine().get(i).setQuantityBackordered(currentLineObject.getQuantity());
@@ -95,6 +103,10 @@ public class InventoryAllocator implements Runnable {
     processedOrders.add(order);
   }
 
+  /**
+   * When the inventory is zero print the result. The results consists of 
+   * orders that have been processed.
+   */
   private void printOrderLog() {
 
     System.out.println();

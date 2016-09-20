@@ -27,7 +27,7 @@ public class InventoryServiceImpl implements InventoryService {
   }
 
   /**
-   * Populate the inventory.
+   * Populate the inventory with product and quantity.
    */
   public boolean populateInventory(MultipartFile file) {
     

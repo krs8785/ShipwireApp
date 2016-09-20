@@ -26,11 +26,11 @@ A REST oriented application that accepts a stream of order which are processed a
    
 2. Initially the inventory is empty so its important to initialize it. You can make a REST call to 
   
-    ```curl -X POST localhost:8080/createInventory -F "file=@inventory.txt"```
+    ```curl -X POST localhost:8080/createInventory -F "file=@data/inventory.txt"```
 
 3. Now you can start sending in orders in the same manner. REST call to
    
-    ```curl -X POST localhost:8080/createOrder -F "file=@orderStream.txt"```
+    ```curl -X POST localhost:8080/createOrder -F "file=@data/orderStream.txt"```
 
 
 <b>Input Example :</b>

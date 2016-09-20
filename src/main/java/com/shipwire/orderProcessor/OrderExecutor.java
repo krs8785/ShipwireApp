@@ -3,9 +3,6 @@ package com.shipwire.orderProcessor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * The orderExecutor thread runs parallel and keep processing
  * orders as soon as they are in the order Queue. 

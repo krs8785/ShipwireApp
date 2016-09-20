@@ -45,7 +45,10 @@ public class OrderGenerator {
       JSONObject lineJsonObject = iterator.next();
       int quantity = Integer.parseInt((String) lineJsonObject.get("Quantity"));
       LineObject lineObject = new LineObject((String) lineJsonObject.get("Product"), quantity);
+      
+      //Validate order if quantity if less than 1 or greater than 5
       if (quantity < Constants.MIN_QUANTITY_ORDER || quantity > Constants.MAX_QUANTITY_ORDER) {
+    
         logger.warn("Recieved stream " + order.getHeader() + " has invalid lineOrder " 
               + lineObject.getProductName()
               + " quantity of " + lineObject.getQuantity());
